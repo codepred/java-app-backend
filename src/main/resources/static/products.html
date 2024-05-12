@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buy cool new products</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+<section>
+  <div class="product">
+    <div class="description">
+      <h3>Masaz Tajski</h3>
+      <h5>250PLN</h5>
+    </div>
+  </div>
+  <form action="/buy-product/tajski" method="POST">
+    <button class="buy-button" type="submit" id="checkout-button">Kup</button>
+  </form>
+</section>
+
+<section>
+  <div class="product">
+    <div class="description">
+      <h3>Masaz Klasyczny</h3>
+      <h5>200PLN</h5>
+    </div>
+  </div>
+  <form action="/buy-product/klasyczny" method="POST">
+    <button class="buy-button" type="submit" id="checkout-button-1">Kup</button>
+  </form>
+</section>
+
+<section>
+  <div class="product">
+    <div class="description">
+      <h3>Masaz Shiatsu</h3>
+      <h5>320PLN</h5>
+    </div>
+  </div>
+  <form action="/buy-product/shiatsu" method="POST">
+    <button class="buy-button" type="submit" id="checkout-button-2">Kup</button>
+  </form>
+</section>
+</body>
+</html>

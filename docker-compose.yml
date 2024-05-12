@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  mysql-kc:
+    image: arm64v8/mysql
+    ports:
+      - "3309:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_ROOT_PASSWORD: bx9aaXX3W425RDF
+      MYSQL_PASSWORD: bx9aaXX3W425RDF
+      MYSQL_DATABASE: cleanrepo
+    volumes:
+      - cleanrepo-mysql-data:/var/lib/mysql
+    networks:
+      - cleanrepo-net
+
+  keycloak-w:
+    image: quay.io/keycloak/keycloak:24.0.3
+    command: start-dev
+    ports:
+      - "8888:8080"
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: mysql
+      KC_DB_USERNAME: mysql
+      KC_DB_PASSWORD: bx9aaXX3W425RDF
+      KC_DB_URL: jdbc:mysql://mysql-kc:3306/cleanrepo?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      KC_FEATURES: token-exchange,admin-fine-grained-authz
+      KC_HOSTNAME: localhost
+    networks:
+      - cleanrepo-net
+    volumes:
+      - ./extensions:/opt/keycloak/providers/
+
+volumes:
+  cleanrepo-mysql-data:
+
+networks:
+  cleanrepo-net:
+    name: cleanrepo-net
